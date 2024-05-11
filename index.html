@@ -192,10 +192,10 @@
             // Check if the username exists and the password matches
             if (credentials.hasOwnProperty(username) && credentials[username] === password) {
                 // Redirect to the waifu.html page after successful login
-                document.getElementById("toggleMsg").innerHTML = "Successfully Logged In";
+                document.getElementById("toggleMsg").innerHTML = "🥳 Successfully Logged In ✨";
                 document.getElementById("toggleMsg").style.display = "block";
                 setTimeout(function() {
-                    window.location.href = "./waifu";
+                    window.location.href = "./image";
                 }, 2000); // Redirect after 2 seconds
                 
                 // Check if save credentials checkbox is checked
