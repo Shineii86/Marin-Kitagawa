@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="https://iconscout.com/3d-illustration/photography-11535216">
     <link rel="stylesheet" href="https://unpkg.com/sheryjs/dist/Shery.css" />
     <link rel="stylesheet" href="https://aeditx03.github.io/resources/StreamCSS.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+        
     <title>Random Waifu Image</title>
     <style>
         body {
@@ -26,12 +27,12 @@
             color: #fff;
             background-image: url('https://graph.org/file/d6d33c80ff15a6d9b1f13.jpg');
             background-size: cover;
-            background-repeat: yes-repeat;
+            background-repeat: no-repeat;
             background-attachment: fixed; /* Set background image as fixed */
         }
-
-         .header h2 {
-            margin-top: 5vh; /* Adjust the top margin as needed */
+        
+        .header h3 {
+            margin-top: 10vh; /* Adjust the top margin as needed */
             margin-bottom: 20px; /* Add margin bottom to create space */
             font-size: 36px;
             font-weight: 700;
@@ -40,16 +41,11 @@
             animation: shadowPulse 2s infinite alternate;
         }
 
-        form {
+        .waifu-container {
             text-align: center;
-            margin-top: 20px;
-            color: white;
         }
 
-        #image-container {
-        margin-top: 20px;
-            margin-bottom: 20px; /* Adjusted margin to accommodate footer */
-            text-align: center;
+        img {
             max-width: 70%;
             max-height: 70%;
             border-radius: 10px;
@@ -57,106 +53,55 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
 
-        h2 {
-            text-align: center;
-            margin-top: 20px;
-            color: white;
+        p {
+            font-size: 18px;
+            color: #666;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
         
-        input[type="submit"] {
-            padding: 10px 20px;
-            background-color: #ff0000; /* Red */
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        select, button {
-            margin: 10px;
-            color: black;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
         footer {
             text-align: center;
             padding: 10px 0;
             width: 100%;
             color: #fff;
             font-size: 14px;
-           /* position: fixed; /* Fixed position */ */
-            bottom: 0; /* Align to the bottom */
-            z-index: 999; /* Ensure the footer is above other content */
+            bottom: 0;
+            z-index: 999;
         }
     </style>
 </head>
+
 <body>
-    <div class="header">
-        <h2>Random Waifus</h2>
+
+<div class="header">
+        <h3>Random Images</h3>
     </div>
-    <form id="imageForm" onsubmit="fetchImage(event)">
-        <label for="type">Type:</label>
-        <select id="type" name="type">
-            <option value="sfw">SFW</option>
-            <option value="nsfw">NSFW</option>
-        </select>
-        
-        <label for="category">Category:</label>
-        <select id="category" name="category">
-            <!-- SFW Categories -->
-            <optgroup label="SFW Categories">
-                <option value="waifu">Waifu</option>
-                <option value="neko">Neko</option>
-                <option value="shinobu">Shinobu</option>
-                <option value="megumin">Megumin</option>
-                <option value="bully">Bully</option>
-                <option value="cuddle">Cuddle</option>
-                <option value="cry">Cry</option>
-                <option value="hug">Hug</option>
-                <option value="awoo">Awoo</option>
-                <option value="kiss">Kiss</option>
-                <option value="lick">Lick</option>
-                <option value="pat">Pat</option>
-                <option value="smug">Smug</option>
-                <option value="bonk">Bonk</option>
-                <option value="yeet">Yeet</option>
-                <option value="blush">Blush</option>
-                <option value="smile">Smile</option>
-                <option value="wave">Wave</option>
-                <option value="highfive">Highfive</option>
-                <option value="handhold">Handhold</option>
-                <option value="nom">Nom</option>
-                <option value="bite">Bite</option>
-                <option value="glomp">Glomp</option>
-                <option value="slap">Slap</option>
-                <option value="kill">Kill</option>
-                <option value="kick">Kick</option>
-                <option value="happy">Happy</option>
-                <option value="wink">Wink</option>
-                <option value="poke">Poke</option>
-                <option value="dance">Dance</option>
-                <option value="cringe">Cringe</option>
-            </optgroup>
-
-            <!-- NSFW Categories -->
-            <optgroup label="NSFW Categories">
-                <option value="waifu">Waifu</option>
-                <option value="neko">Neko</option>
-                <option value="trap">Trap</option>
-                <option value="blowjob">Blowjob</option>
-            </optgroup>
-        </select>
-
-        <input type="submit" value="Search">
-    </form>
-
-    <div id="image-container"></div>
-
-    <footer>
+    
+    <div class="waifu-container">
+        <div id="waifu-info"></div>
+        <button onclick="getRandomWaifu()" style="background-color: #ff0000; /* Red */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 12px;">Get My Waifu</button>
+    </div>
+    
+<footer>
         <div class="copyright ">
             <h5 class="text-center">This Page Is Designed By <a href="https://t.me/Shineii86" style="text-decoration: none;"><span style="font-weight: bold; color: red; text-shadow:1px 1px 1px black;">Shinei Nouzen</span></a></h5>
 
@@ -174,39 +119,64 @@
     </footer>
 
     <script>
-    async function fetchImage(event) {
-        event.preventDefault();
-        const form = document.getElementById('imageForm');
-        const formData = new FormData(form);
-        const type = formData.get('type');
-        const category = formData.get('category');
+    function getRandomWaifu() {
+        const apiUrl = 'https://api.waifu.im/search';
+        const params = {
+            included_tags: 'marin-kitagawa',
+            height: '>=2000'
+        };
 
-        try {
-            const url = `https://api.waifu.pics/${type}/${category}`;
-            const response = await fetch(url);
-            const data = await response.json();
-            const imageUrl = data.url;
+        const queryParams = new URLSearchParams();
 
-            const imageContainer = document.getElementById('image-container');
-            imageContainer.innerHTML = `<img src="${imageUrl}" alt="Random Waifu Image" loading="lazy" oncontextmenu="preventRightClick(event)" onmousedown="preventImageDrag(event)">`;
-        } catch (error) {
-            console.error('Error fetching image:', error);
+        for (const key in params) {
+            if (Array.isArray(params[key])) {
+                params[key].forEach(value => {
+                    queryParams.append(key, value);
+                });
+            } else {
+                queryParams.set(key, params[key]);
+            }
         }
 
-        // Redirect to login page after 1-2 minutes
-        setTimeout(() => {
-            window.location.href = "./";
-        }, 120000); // 120000 milliseconds = 2 minutes
+        const requestUrl = `${apiUrl}?${queryParams.toString()}`;
+
+        fetch(requestUrl)
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Request failed with status code: ' + response.status);
+                }
+            })
+            .then(data => {
+                const waifuInfo = document.getElementById('waifu-info');
+                const image = document.createElement('img');
+                image.src = data.images[0].url;
+                image.setAttribute('draggable', 'false'); // Disable image dragging
+                image.addEventListener('dragstart', function(event) { // Add event listener for dragstart
+                    const username = prompt("Please enter your username:");
+                    const password = prompt("Please enter your password:");
+                    if(username !== "Shinei" || password !== "Shikimori") {
+                        window.location.href = './'; // Redirect to index.html
+                    }
+                    event.preventDefault(); // Prevent default drag behavior
+                });
+                window.onbeforeunload = function() {
+                    const username = prompt("Please enter your username:");
+                    const password = prompt("Please enter your password:");
+                    if(username !== "Shinei" || password !== "Shikimori") {
+                        return 'Are you sure you want to leave?'; // Redirect to index.html
+                    }
+                };
+                waifuInfo.innerHTML = ''; // Clear previous image
+                waifuInfo.appendChild(image); // Append new image
+            })
+            .catch(error => {
+                console.error('An error occurred:', error.message);
+            });
     }
 
-    function preventRightClick(event) {
-        event.preventDefault();
-        window.location.href = "./"; // Redirect to login page
-    }
-
-    function preventImageDrag(event) {
-        event.preventDefault();
-    }
+    getRandomWaifu(); // Fetch initial random waifu image
 </script>
 </body>
 </html>
