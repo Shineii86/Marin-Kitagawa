@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/sheryjs/dist/Shery.css" />
-    <link rel="stylesheet" href="https://aeditx03.github.io/resources/StreamCSS.css">
+    <link rel="stylesheet" href="https://Shineii86.github.io/resources/StreamCSS.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500;700&display=swap" rel="stylesheet">
@@ -82,7 +82,7 @@
 <body>
 
 <div class="header">
-        <h3>Random Images</h3>
+        <h3>Marin Kitagawaa</h3>
     </div>
     
     <div class="waifu-container">
@@ -98,7 +98,7 @@
   margin: 4px 2px;
   transition-duration: 0.4s;
   cursor: pointer;
-  border-radius: 12px;">Get My Waifu</button>
+  border-radius: 12px;">Refresh</button>
     </div>
     
 <footer>
@@ -154,20 +154,21 @@
                 image.src = data.images[0].url;
                 image.setAttribute('draggable', 'false'); // Disable image dragging
                 image.addEventListener('dragstart', function(event) { // Add event listener for dragstart
-                    const username = prompt("Please enter your username:");
-                    const password = prompt("Please enter your password:");
-                    if(username !== "Shinei" || password !== "Shikimori") {
-                        window.location.href = './'; // Redirect to index.html
-                    }
+                    setTimeout(() => {
+                        window.location.href = './'; // Redirect after 2 minutes
+                    }, 120000); // 2 minutes = 120000 milliseconds
                     event.preventDefault(); // Prevent default drag behavior
                 });
-                window.onbeforeunload = function() {
-                    const username = prompt("Please enter your username:");
-                    const password = prompt("Please enter your password:");
-                    if(username !== "Shinei" || password !== "Shikimori") {
-                        return 'Are you sure you want to leave?'; // Redirect to index.html
+                image.addEventListener('contextmenu', function(event) { // Add event listener for contextmenu
+                    window.location.href = './'; // Redirect when trying to download image
+                    event.preventDefault(); // Prevent default context menu behavior
+                });
+                image.addEventListener('mousedown', function(event) { // Add event listener for mousedown
+                    if (event.button === 2) { // Check if right mouse button is clicked
+                        window.location.href = './'; // Redirect when trying to download image
+                        event.preventDefault(); // Prevent default mousedown behavior
                     }
-                };
+                });
                 waifuInfo.innerHTML = ''; // Clear previous image
                 waifuInfo.appendChild(image); // Append new image
             })
