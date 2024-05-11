@@ -9,11 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-        
-    <title>Random Waifu Image</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Login</title>
     <style>
         body {
             margin: 0;
@@ -22,161 +19,223 @@
             height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
+            justify-content: center;
             align-items: center;
             color: #fff;
             background-image: url('https://graph.org/file/d6d33c80ff15a6d9b1f13.jpg');
             background-size: cover;
             background-repeat: no-repeat;
-            background-attachment: fixed; /* Set background image as fixed */
+            background-attachment: fixed;
+            font-family: 'Josefin Sans', sans-serif;
         }
         
-        .header h3 {
-            margin-top: 10vh; /* Adjust the top margin as needed */
-            margin-bottom: 20px; /* Add margin bottom to create space */
-            font-size: 36px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            animation: shadowPulse 2s infinite alternate;
-        }
-
-        .waifu-container {
-            text-align: center;
-        }
-
-        img {
-            max-width: 70%;
-            max-height: 70%;
+        .login-form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
             border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-        }
-
-        p {
-            font-size: 18px;
-            color: #666;
-        }
-
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            width: 90%;
         }
         
-        footer {
-            text-align: center;
-            padding: 10px 0;
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .input-group input {
             width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.2);
             color: #fff;
-            font-size: 14px;
-            bottom: 0;
-            z-index: 999;
+            outline: none;
+        }
+        
+        .input-group input:focus {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .input-group .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #fff;
+        }
+        
+        .login-btn {
+            background-color: red;
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            outline: none;
+            margin-right: 10px; /* Added margin for spacing */
+        }
+        
+        .support-btn {
+            background-color: red;
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            outline: none;
+            margin-right: 10px; /* Added margin for spacing */
+            display: none; /* Initially hidden */
+        }
+        
+        .login-btn:hover {
+            background-color: #ff3333;
+        }
+        
+        .error-msg {
+            color: red;
+            text-align: center; /* Center align error message */
+        }
+        
+        /* Styling for date and time */
+        .date-time {
+            margin-bottom: 20px;
+            font-size: 20px;
         }
     </style>
 </head>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+</head>
 <body>
-
-<div class="header">
-        <h3>Random Images</h3>
-    </div>
-    
-    <div class="waifu-container">
-        <div id="waifu-info"></div>
-        <button onclick="getRandomWaifu()" style="background-color: #ff0000; /* Red */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  transition-duration: 0.4s;
-  cursor: pointer;
-  border-radius: 12px;">Get My Waifu</button>
-    </div>
-    
-<footer>
-        <div class="copyright ">
-            <h5 class="text-center">This Page Is Designed By <a href="https://t.me/Shineii86" style="text-decoration: none;"><span style="font-weight: bold; color: red; text-shadow:1px 1px 1px black;">Shinei Nouzen</span></a></h5>
-
-            <div class="icons">
-                <a href="https://github.com/Shineii86" style="text-decoration: none;"><i class="fa-brands fa-github fa-lg"></i></a>
-                <a href="https://t.me/Shineii86" style="text-decoration: none;"><i class="fa-brands fa-telegram fa-lg"></i></a>
-                <a href="https://www.pinterest.com/ikx7a" style="text-decoration: none;"><i class="fa-brands fa-pinterest fa-lg"></i></a>
-                <a href="https://youtube.com/@ikx7a?si=o-w59oWeUM0EM7fa" style="text-decoration: none;"><i class="fa-brands fa-youtube fa-lg"></i></a>
-                <a href="https://www.instagram.com/ikx7.a" style="text-decoration: none;"><i class="fa-brands fa-instagram fa-lg"></i></a>
-            </div>
+    <form class="login-form" id="loginForm">
+        <h2>Quinx Login Panel</h2><br>
+        <div class="input-group">
+            <input type="text" id="username" placeholder="Username">
         </div>
-        <div class="copyright ">
-            <h4 class="text-center">Copyright © 2024 <a href="https://t.me/QuinxNetwork" style="text-decoration: none;"><span style="font-weight: bold; color: red; text-shadow: 1px 1px 1px black;">Quinx</span></a>, All Rights Reserved.</h4>
+        <div class="input-group">
+            <input type="password" id="password" placeholder="Password">
+            <span class="toggle-password" onclick="togglePasswordVisibility()"><i class="fas fa-eye"></i></span>
         </div>
+        <div align="left">
+            <input type="checkbox" id="saveCredentials">
+            <label for="saveCredentials">Save Username & Password</label> 
+            <br>
+            
+        </div>
+        
+        <br>
+        
+        <div class="error-msg" id="error"></div>
+        
+        <br>
+        
+        <div class="toggle-msg" id="toggleMsg" style="display:none;"></div>
+        <br>
+        <button type="submit" class="login-btn">Login</button>
+        <button class="support-btn" onclick="redirectToTelegram()">Developer</button>
+    </form>
+    
+<br><br><br><br><br>
+
+    <footer>
+        <p>Made With ❤ By <a href="https://t.me/shineii86">@Shineii86</a></p>
     </footer>
 
     <script>
-    function getRandomWaifu() {
-        const apiUrl = 'https://api.waifu.im/search';
-        const params = {
-            included_tags: 'marin-kitagawa',
-            height: '>=2000'
+        // Object to store usernames and passwords
+        var credentials = {
+            "@Shineii86": "Shikimori",
+            "@shineii86": "shikimori",
+            "Shineii86": "Shikimori",
+            "shineii86": "shikimori",
+            // Add more users here
         };
 
-        const queryParams = new URLSearchParams();
+        // Function to toggle password visibility
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById("password");
+            var togglePasswordBtn = document.querySelector(".toggle-password");
 
-        for (const key in params) {
-            if (Array.isArray(params[key])) {
-                params[key].forEach(value => {
-                    queryParams.append(key, value);
-                });
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                togglePasswordBtn.querySelector("i").classList.remove("fa-eye");
+                togglePasswordBtn.querySelector("i").classList.add("fa-eye-slash");
             } else {
-                queryParams.set(key, params[key]);
+                passwordInput.type = "password";
+                togglePasswordBtn.querySelector("i").classList.remove("fa-eye-slash");
+                togglePasswordBtn.querySelector("i").classList.add("fa-eye");
             }
         }
 
-        const requestUrl = `${apiUrl}?${queryParams.toString()}`;
+        // Function to redirect to Telegram
+        function redirectToTelegram() {
+            // Replace 'your_telegram_username' with your actual Telegram username
+            var telegramLink = "https://t.me/shineii86";
+            window.open(telegramLink, '_blank');
+        }
 
-        fetch(requestUrl)
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error('Request failed with status code: ' + response.status);
+        // Function to handle form submission
+        document.getElementById("loginForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent the form from submitting
+
+            // Get the username and password values
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            // Check if the username exists and the password matches
+            if (credentials.hasOwnProperty(username) && credentials[username] === password) {
+                // Redirect to the waifu.html page after successful login
+                document.getElementById("toggleMsg").innerHTML = "Successfully Logged In";
+                document.getElementById("toggleMsg").style.display = "block";
+                setTimeout(function() {
+                    window.location.href = "./waifu";
+                }, 2000); // Redirect after 2 seconds
+                
+                // Check if save credentials checkbox is checked
+                if (document.getElementById("saveCredentials").checked) {
+                    // Save the credentials to local storage
+                    localStorage.setItem("savedCredentials", JSON.stringify({ username: username, password: password }));
                 }
-            })
-            .then(data => {
-                const waifuInfo = document.getElementById('waifu-info');
-                const image = document.createElement('img');
-                image.src = data.images[0].url;
-                image.setAttribute('draggable', 'false'); // Disable image dragging
-                image.addEventListener('dragstart', function(event) { // Add event listener for dragstart
-                    const username = prompt("Please enter your username:");
-                    const password = prompt("Please enter your password:");
-                    if(username !== "Shinei" || password !== "Shikimori") {
-                        window.location.href = 'index.html'; // Redirect to index.html
-                    }
-                    event.preventDefault(); // Prevent default drag behavior
-                });
-                window.onbeforeunload = function() {
-                    const username = prompt("Please enter your username:");
-                    const password = prompt("Please enter your password:");
-                    if(username !== "Shinei" || password !== "Shikimori") {
-                        return 'Are you sure you want to leave?'; // Redirect to index.html
-                    }
-                };
-                waifuInfo.innerHTML = ''; // Clear previous image
-                waifuInfo.appendChild(image); // Append new image
-            })
-            .catch(error => {
-                console.error('An error occurred:', error.message);
-            });
-    }
+            } else {
+                // Display error message
+                document.getElementById("error").innerHTML = 'Invalid username or password, <br><b><a href="https://t.me/shineii86">Please contact the developer.</a></b>';
+                // Display the support button and adjust alignment
+                document.querySelector(".support-btn").style.display = "inline-block";
+                document.querySelector(".login-btn").style.marginRight = "calc(50% - 80px)"; // Adjust margin for login button
+            }
+        });
 
-    getRandomWaifu(); // Fetch initial random waifu image
-</script>
+        // Check if there are saved credentials
+        document.addEventListener("DOMContentLoaded", function() {
+            var savedCredentials = localStorage.getItem("savedCredentials");
+            if (savedCredentials) {
+                var credentials = JSON.parse(savedCredentials);
+                document.getElementById("username").value = credentials.username;
+                document.getElementById("password").value = credentials.password;
+                document.getElementById("saveCredentials").checked = true;
+            }
+        });
+
+        // Add an event listener to the checkbox
+        document.getElementById("saveCredentials").addEventListener("change", function() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var isChecked = this.checked;
+            if (isChecked) {
+                // Save the credentials
+                localStorage.setItem("savedCredentials", JSON.stringify({ username: username, password: password }));
+            } else {
+                // Remove saved credentials if unchecked
+                localStorage.removeItem("savedCredentials");
+            }
+        });
+    </script>
 </body>
 </html>
