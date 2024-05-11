@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/sheryjs/dist/Shery.css" />
+    <link rel="stylesheet" href="https://aeditx03.github.io/resources/StreamCSS.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Login</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            background-image: url('https://graph.org/file/d6d33c80ff15a6d9b1f13.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Josefin Sans', sans-serif;
+        }
+        
+        .login-form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            width: 90%;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            outline: none;
+        }
+        
+        .input-group input:focus {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .input-group .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #fff;
+        }
+        
+        .login-btn {
+            background-color: red;
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            outline: none;
+            margin-right: 10px; /* Added margin for spacing */
+        }
+        
+        .support-btn {
+            background-color: red;
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            outline: none;
+            margin-right: 10px; /* Added margin for spacing */
+            display: none; /* Initially hidden */
+        }
+        
+        .login-btn:hover {
+            background-color: #ff3333;
+        }
+        
+        .error-msg {
+            color: red;
+            text-align: center; /* Center align error message */
+        }
+        
+        /* Styling for date and time */
+        .date-time {
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+</head>
+<body>
+    <form class="login-form" id="loginForm">
+        <h2>Quinx Login Panel</h2><br>
+        <div class="input-group">
+            <input type="text" id="username" placeholder="Username">
+        </div>
+        <div class="input-group">
+            <input type="password" id="password" placeholder="Password">
+            <span class="toggle-password" onclick="togglePasswordVisibility()"><i class="fas fa-eye"></i></span>
+        </div>
+        <div align="left">
+            <input type="checkbox" id="saveCredentials">
+            <label for="saveCredentials">Save Username & Password</label> 
+            <br>
+            
+        </div>
+        
+        <br>
+        
+        <div class="error-msg" id="error"></div>
+        
+        <br>
+        
+        <div class="toggle-msg" id="toggleMsg" style="display:none;"></div>
+        <br>
+        <button type="submit" class="login-btn">Login</button>
+        <button class="support-btn" onclick="redirectToTelegram()">Developer</button>
+    </form>
+    
+<br><br><br><br><br>
+
+    <footer>
+        <p>Made With ❤ By <a href="https://t.me/shineii86">@Shineii86</a></p>
+    </footer>
+
+    <script>
+        // Object to store usernames and passwords
+        var credentials = {
+            "@Shineii86": "Shikimori",
+            "@shineii86": "shikimori",
+            "Shineii86": "Shikimori",
+            "shineii86": "shikimori",
+            // Add more users here
+        };
+
+        // Function to toggle password visibility
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById("password");
+            var togglePasswordBtn = document.querySelector(".toggle-password");
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                togglePasswordBtn.querySelector("i").classList.remove("fa-eye");
+                togglePasswordBtn.querySelector("i").classList.add("fa-eye-slash");
+            } else {
+                passwordInput.type = "password";
+                togglePasswordBtn.querySelector("i").classList.remove("fa-eye-slash");
+                togglePasswordBtn.querySelector("i").classList.add("fa-eye");
+            }
+        }
+
+        // Function to redirect to Telegram
+        function redirectToTelegram() {
+            // Replace 'your_telegram_username' with your actual Telegram username
+            var telegramLink = "https://t.me/shineii86";
+            window.open(telegramLink, '_blank');
+        }
+
+        // Function to handle form submission
+        document.getElementById("loginForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent the form from submitting
+
+            // Get the username and password values
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            // Check if the username exists and the password matches
+            if (credentials.hasOwnProperty(username) && credentials[username] === password) {
+                // Redirect to the waifu.html page after successful login
+                document.getElementById("toggleMsg").innerHTML = "Successfully Logged In";
+                document.getElementById("toggleMsg").style.display = "block";
+                setTimeout(function() {
+                    window.location.href = "./waifu";
+                }, 2000); // Redirect after 2 seconds
+                
+                // Check if save credentials checkbox is checked
+                if (document.getElementById("saveCredentials").checked) {
+                    // Save the credentials to local storage
+                    localStorage.setItem("savedCredentials", JSON.stringify({ username: username, password: password }));
+                }
+            } else {
+                // Display error message
+                document.getElementById("error").innerHTML = 'Invalid username or password, <br><b><a href="https://t.me/shineii86">Please contact the developer.</a></b>';
+                // Display the support button and adjust alignment
+                document.querySelector(".support-btn").style.display = "inline-block";
+                document.querySelector(".login-btn").style.marginRight = "calc(50% - 80px)"; // Adjust margin for login button
+            }
+        });
+
+        // Check if there are saved credentials
+        document.addEventListener("DOMContentLoaded", function() {
+            var savedCredentials = localStorage.getItem("savedCredentials");
+            if (savedCredentials) {
+                var credentials = JSON.parse(savedCredentials);
+                document.getElementById("username").value = credentials.username;
+                document.getElementById("password").value = credentials.password;
+                document.getElementById("saveCredentials").checked = true;
+            }
+        });
+
+        // Add an event listener to the checkbox
+        document.getElementById("saveCredentials").addEventListener("change", function() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var isChecked = this.checked;
+            if (isChecked) {
+                // Save the credentials
+                localStorage.setItem("savedCredentials", JSON.stringify({ username: username, password: password }));
+            } else {
+                // Remove saved credentials if unchecked
+                localStorage.removeItem("savedCredentials");
+            }
+        });
+    </script>
+</body>
+</html>
