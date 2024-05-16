@@ -155,17 +155,17 @@
                 image.setAttribute('draggable', 'false'); // Disable image dragging
                 image.addEventListener('dragstart', function(event) { // Add event listener for dragstart
                     setTimeout(() => {
-                        window.location.href = './'; // Redirect after 2 minutes
+                        window.location.href = './login'; // Redirect after 2 minutes
                     }, 120000); // 2 minutes = 120000 milliseconds
                     event.preventDefault(); // Prevent default drag behavior
                 });
                 image.addEventListener('contextmenu', function(event) { // Add event listener for contextmenu
-                    window.location.href = './'; // Redirect when trying to download image
+                    window.location.href = './login'; // Redirect when trying to download image
                     event.preventDefault(); // Prevent default context menu behavior
                 });
                 image.addEventListener('mousedown', function(event) { // Add event listener for mousedown
                     if (event.button === 2) { // Check if right mouse button is clicked
-                        window.location.href = './'; // Redirect when trying to download image
+                        window.location.href = './login'; // Redirect when trying to download image
                         event.preventDefault(); // Prevent default mousedown behavior
                     }
                 });
