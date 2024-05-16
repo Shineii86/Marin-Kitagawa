@@ -209,6 +209,10 @@
                 // Display the support button and adjust alignment
                 document.querySelector(".support-btn").style.display = "inline-block";
                 document.querySelector(".login-btn").style.marginRight = "calc(50% - 80px)"; // Adjust margin for login button
+                // Redirect to index.html after 3 seconds if password is incorrect
+            setTimeout(function() {
+                window.location.href = "./";
+            }, 3000); // Redirect after 3 seconds
             }
         });
 
